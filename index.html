@@ -1,133 +1,630 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>С Днём рождения, пап!</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:Manrope,sans-serif;background:#0d1117;color:#fff}
-.hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.45)}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,#0d1117)}
-.hero .content{position:relative;z-index:2;max-width:800px;padding:20px}
-.hero h1{font-size:clamp(3rem,8vw,6rem);margin:20px 0}
-.hero a{display:inline-block;margin-top:30px;padding:14px 28px;border:1px solid #fff;border-radius:999px;color:#fff;text-decoration:none}
-section{padding:110px 0}
-.container{width:min(1200px,calc(100% - 40px));margin:auto}
-.header{display:grid;grid-template-columns:80px 1fr;gap:24px;margin-bottom:50px}
-.header span{font-size:3rem;color:#4b5563;font-weight:800}
-.header p{color:#9ca3af}
-.grid{display:grid;gap:22px}
-.two{grid-template-columns:repeat(2,1fr)}
-.three{grid-template-columns:repeat(3,1fr)}
-img.photo{width:100%;border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.35);transition:.35s;cursor:pointer}
-img.photo:hover{transform:translateY(-8px) scale(1.02)}
-.family{grid-template-columns:1.5fr 1fr}
-.family img:first-child{grid-row:span 2;height:100%;object-fit:cover}
-.ending{text-align:center;padding:160px 20px}
-.ending h2{font-size:4rem;margin-bottom:30px}
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);align-items:center;justify-content:center;z-index:999}
-.lightbox.active{display:flex}
-.lightbox img{max-width:90vw;max-height:90vh;border-radius:18px}
-.close{position:absolute;top:20px;right:30px;font-size:50px;color:#fff;cursor:pointer}
-@media(max-width:900px){
-.header{grid-template-columns:1fr}
-.two,.three,.family{grid-template-columns:1fr}
-.family img:first-child{grid-row:auto}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём рождения, папа</title>
+    <style>
+        :root {
+            --bg: #08080c;
+            --surface: #13131a;
+            --surface-2: #1c1c26;
+            --text: #f0ece4;
+            --text-secondary: #a09b90;
+            --accent: #cfb06e;
+            --accent-soft: #b89b5c;
+            --glass-bg: rgba(18, 18, 26, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.6);
+            --radius: 16px;
+            --radius-lg: 24px;
+            --transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            letter-spacing: -0.01em;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero__parallax-bg {
+            position: absolute;
+            inset: -20%;
+            background: url('assets/1.%20before%20family/4000%C3%973000')
+                center/cover no-repeat;
+            will-change: transform;
+            filter: brightness(0.5) saturate(0.6);
+            z-index: 0;
+        }
+        .hero__parallax-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(8, 8, 12, 0.85) 100%);
+        }
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 60px 80px;
+            box-shadow: var(--shadow-lg);
+            animation: fadeInUp 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        @media (max-width: 768px) {
+            .hero__content {
+                padding: 40px 24px;
+                margin: 0 16px;
+            }
+        }
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin-bottom: 12px;
+            line-height: 1.15;
+        }
+        .hero h1 span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+            font-weight: 400;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+        }
+        .section__header {
+            margin-bottom: 56px;
+            text-align: left;
+        }
+        .section__subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-soft);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .section__title {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        .section__text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* ===== MASONRY GRID ===== */
+        .masonry {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 180px;
+            gap: 20px;
+        }
+        @media (max-width: 1024px) {
+            .masonry {
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: 160px;
+            }
+        }
+        @media (max-width: 640px) {
+            .masonry {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 140px;
+                gap: 12px;
+            }
+        }
+        .masonry-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.4s ease, transform 0.4s ease;
+            background: var(--surface-2);
+        }
+        .masonry-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .masonry-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .masonry-item:hover img {
+            transform: scale(1.04);
+        }
+        /* размеры ячеек */
+        .span-1-1 {
+            grid-row: span 1;
+            grid-column: span 1;
+        }
+        .span-2-1 {
+            grid-row: span 2;
+            grid-column: span 1;
+        }
+        .span-2-2 {
+            grid-row: span 2;
+            grid-column: span 2;
+        }
+        .span-1-2 {
+            grid-row: span 1;
+            grid-column: span 2;
+        }
+        @media (max-width: 1024px) {
+            .span-2-2,
+            .span-1-2 {
+                grid-column: span 2;
+            }
+            .span-2-1 {
+                grid-row: span 2;
+                grid-column: span 1;
+            }
+        }
+        @media (max-width: 640px) {
+            .span-2-2,
+            .span-1-2 {
+                grid-column: span 2;
+            }
+            .span-2-1 {
+                grid-row: span 2;
+                grid-column: span 1;
+            }
+            .span-1-1 {
+                grid-row: span 1;
+                grid-column: span 1;
+            }
+        }
+        /* акцентная вертикальная карточка — немного выступает */
+        .masonry-item.accent-vertical {
+            border-left: 2px solid var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== FINALE ===== */
+        .finale {
+            text-align: center;
+            padding: 140px 0 100px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .finale.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .finale h2 {
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            margin-bottom: 28px;
+            color: var(--accent);
+        }
+        .finale p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 2;
+            font-style: italic;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox__img {
+            max-width: 92vw;
+            max-height: 92vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .lightbox.active .lightbox__img {
+            transform: scale(1);
+        }
+        .lightbox__close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 2;
+        }
+        .lightbox__close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        @media (max-width: 640px) {
+            .lightbox__close {
+                top: 16px;
+                right: 16px;
+                width: 38px;
+                height: 38px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            animation: bounce 2s infinite;
+        }
+        .scroll-indicator span {
+            margin-top: 6px;
+            width: 24px;
+            height: 24px;
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            transform: rotate(45deg);
+        }
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero__parallax-bg" id="parallaxBg"></div>
+        <div class="hero__content">
+            <h1>С Днём рождения,&nbsp;<span>пап</span>.</h1>
+            <p>Небольшое путешествие по истории нашей семьи.</p>
+        </div>
+        <div class="scroll-indicator">
+            листай вниз
+            <span></span>
+        </div>
+    </section>
 
-<header class="hero">
-<img src="assets/memories/1.jpg" alt="">
-<div class="content">
-<div>Для самого лучшего папы</div>
-<h1>С Днём рождения</h1>
-<p>Небольшое путешествие по истории нашей семьи.</p>
-<a href="#start">Начать</a>
-</div>
-</header>
+    <main class="container">
+        <!-- 2. Всё начиналось здесь -->
+        <section class="section" data-animate>
+            <div class="section__header">
+                <div class="section__subtitle">Глава 1</div>
+                <h2 class="section__title">Всё начиналось здесь</h2>
+                <p class="section__text">Детских фотографий найти не удалось, поэтому история начинается отсюда.</p>
+            </div>
+            <div class="masonry">
+                <div class="masonry-item span-2-2" data-full="assets/1.%20before%20family/4000%C3%973000">
+                    <img src="assets/1.%20before%20family/4000%C3%973000" alt="Семейное фото 4000×3000"
+                    onerror="this.src=generatePlaceholder(4000,3000)">
+                </div>
+                <div class="masonry-item span-1-1" data-full="assets/1.%20before%20family/1600%C3%971200">
+                    <img src="assets/1.%20before%20family/1600%C3%971200" alt="Фото 1600×1200"
+                    onerror="this.src=generatePlaceholder(1600,1200)">
+                </div>
+            </div>
+        </section>
 
-<main id="start">
+        <!-- 3. 24 июля 2010 -->
+        <section class="section" data-animate>
+            <div class="section__header">
+                <div class="section__subtitle">Глава 2</div>
+                <h2 class="section__title">24 июля 2010</h2>
+                <p class="section__text">День, с которого всё изменилось.</p>
+            </div>
+            <div class="masonry">
+                <div class="masonry-item span-2-2" data-full="assets/2.%20wedding/2048%C3%971536">
+                    <img src="assets/2.%20wedding/2048%C3%971536" alt="Свадьба 2048×1536"
+                    onerror="this.src=generatePlaceholder(2048,1536)">
+                </div>
+                <div class="masonry-item span-1-1" data-full="assets/2.%20wedding/1600%C3%971200-1">
+                    <img src="assets/2.%20wedding/1600%C3%971200" alt="Свадьба 1600×1200"
+                    onerror="this.src=generatePlaceholder(1600,1200)">
+                </div>
+                <div class="masonry-item span-1-1" data-full="assets/2.%20wedding/1600%C3%971200-2">
+                    <img src="assets/2.%20wedding/1600%C3%971200" alt="Свадьба 1600×1200"
+                    onerror="this.src=generatePlaceholder(1600,1200)">
+                </div>
+            </div>
+        </section>
 
-<section>
-<div class="container">
-<div class="header"><span>01</span><div><h2>Всё начиналось здесь</h2><p>Детских фотографий найти не удалось, поэтому история начинается отсюда.</p></div></div>
-<div class="grid two">
-<img class="photo" src="assets/before family/1.jpg">
-<img class="photo" src="assets/before family/2.jpg">
-</div>
-</div>
-</section>
+        <!-- 4. Потом появился я -->
+        <section class="section" data-animate>
+            <div class="section__header">
+                <div class="section__subtitle">Глава 3</div>
+                <h2 class="section__title">Потом появился я</h2>
+                <p class="section__text">И жизнь стала ещё интереснее.</p>
+            </div>
+            <div class="masonry">
+                <div class="masonry-item span-2-1 accent-vertical" data-full="assets/3.%20me/1536%C3%972048">
+                    <img src="assets/3.%20me/1536%C3%972048" alt="Я вертикальное 1536×2048"
+                    onerror="this.src=generatePlaceholder(1536,2048)">
+                </div>
+                <div class="masonry-item span-1-1" data-full="assets/3.%20me/2048%C3%971536">
+                    <img src="assets/3.%20me/2048%C3%971536" alt="Я 2048×1536"
+                    onerror="this.src=generatePlaceholder(2048,1536)">
+                </div>
+                <div class="masonry-item span-2-2" data-full="assets/3.%20me/4000%C3%973000">
+                    <img src="assets/3.%20me/4000%C3%973000" alt="Я 4000×3000"
+                    onerror="this.src=generatePlaceholder(4000,3000)">
+                </div>
+            </div>
+        </section>
 
-<section>
-<div class="container">
-<div class="header"><span>02</span><div><h2>24 июля 2010</h2><p>День, с которого всё изменилось.</p></div></div>
-<div class="grid three">
-<img class="photo" src="assets/wedding/1.jpg">
-<img class="photo" src="assets/wedding/2.jpg">
-<img class="photo" src="assets/wedding/3.jpg">
-</div>
-</div>
-</section>
+        <!-- 5. Потом появился младший брат -->
+        <section class="section" data-animate>
+            <div class="section__header">
+                <div class="section__subtitle">Глава 4</div>
+                <h2 class="section__title">Потом появился младший брат</h2>
+                <p class="section__text">Нас стало ещё больше.</p>
+            </div>
+            <div class="masonry">
+                <div class="masonry-item span-2-2" data-full="assets/4.%20brother/4128%C3%973096">
+                    <img src="assets/4.%20brother/4128%C3%973096" alt="Брат 4128×3096"
+                    onerror="this.src=generatePlaceholder(4128,3096)">
+                </div>
+                <div class="masonry-item span-2-1 accent-vertical" data-full="assets/4.%20brother/1836%C3%973264">
+                    <img src="assets/4.%20brother/1836%C3%973264" alt="Брат вертикальное 1836×3264"
+                    onerror="this.src=generatePlaceholder(1836,3264)">
+                </div>
+                <div class="masonry-item span-1-1" data-full="assets/4.%20brother/3264%C3%972448">
+                    <img src="assets/4.%20brother/3264%C3%972448" alt="Брат 3264×2448"
+                    onerror="this.src=generatePlaceholder(3264,2448)">
+                </div>
+            </div>
+        </section>
 
-<section>
-<div class="container">
-<div class="header"><span>03</span><div><h2>Потом появился я</h2><p>И жизнь стала ещё интереснее.</p></div></div>
-<div class="grid family">
-<img class="photo" src="assets/me/1.jpg">
-<img class="photo" src="assets/me/2.jpg">
-<img class="photo" src="assets/me/3.jpg">
-</div>
-</div>
-</section>
+        <!-- 6. И просто интересные моменты -->
+        <section class="section" data-animate>
+            <div class="section__header">
+                <div class="section__subtitle">Глава 5</div>
+                <h2 class="section__title">И просто интересные моменты</h2>
+            </div>
+            <div class="masonry">
+                <div class="masonry-item span-2-2" data-full="assets/5.%20memories/4000%C3%973000">
+                    <img src="assets/5.%20memories/4000%C3%973000" alt="Воспоминания 4000×3000"
+                    onerror="this.src=generatePlaceholder(4000,3000)">
+                </div>
+                <div class="masonry-item span-1-1" data-full="assets/5.%20memories/1280%C3%971024">
+                    <img src="assets/5.%20memories/1280%C3%971024" alt="Воспоминания 1280×1024"
+                    onerror="this.src=generatePlaceholder(1280,1024)">
+                </div>
+                <div class="masonry-item span-1-1" data-full="assets/5.%20memories/2576%C3%971932">
+                    <img src="assets/5.%20memories/2576%C3%971932" alt="Воспоминания 2576×1932"
+                    onerror="this.src=generatePlaceholder(2576,1932)">
+                </div>
+            </div>
+        </section>
+    </main>
 
-<section>
-<div class="container">
-<div class="header"><span>04</span><div><h2>Потом появился младший брат</h2><p>Нас стало ещё больше.</p></div></div>
-<div class="grid family">
-<img class="photo" src="assets/brother/1.jpg">
-<img class="photo" src="assets/brother/2.jpg">
-<img class="photo" src="assets/brother/3.jpg">
-</div>
-</div>
-</section>
+    <!-- 7. Финал -->
+    <section class="finale" data-animate>
+        <div class="container">
+            <h2>Спасибо, пап.</h2>
+            <p>
+                За всё, что было.<br>
+                За всё, что есть.<br>
+                И за всё, что ещё впереди.
+            </p>
+        </div>
+    </section>
 
-<section>
-<div class="container">
-<div class="header"><span>05</span><div><h2>И просто интересные моменты</h2><p>Именно из них складывается жизнь.</p></div></div>
-<div class="grid three">
-<img class="photo" src="assets/memories/1.jpg">
-<img class="photo" src="assets/memories/2.jpg">
-<img class="photo" src="assets/memories/3.jpg">
-</div>
-</div>
-</section>
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox__close" id="lightboxClose" aria-label="Закрыть">✕</button>
+        <img src="" alt="" class="lightbox__img" id="lightboxImg">
+    </div>
 
-<section class="ending">
-<h2>Спасибо, пап.</h2>
-<p>За всё, что было.<br><br>За всё, что есть.<br><br>И за всё, что ещё впереди.</p>
-</section>
+    <script>
+        (function() {
+            // Генератор плейсхолдеров на случай отсутствия реальных фотографий
+            window.generatePlaceholder = function(w, h) {
+                const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+                <rect width="${w}" height="${h}" fill="#1c1c26"/>
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+                fill="#4a4a55" font-family="sans-serif" font-size="${Math.min(w,h)*0.06}" font-weight="300">
+                ${w}×${h}
+              </text>
+            </svg>`;
+            return 'data:image/svg+xml,' + encodeURIComponent(svg);
+        };
 
-</main>
+        // Параллакс героя
+        const parallaxBg = document.getElementById('parallaxBg');
+        let ticking = false;
 
-<div class="lightbox" id="lb"><span class="close">&times;</span><img id="lbimg"></div>
+        function updateParallax() {
+            if (!parallaxBg) return;
+            const scrollY = window.pageYOffset;
+            const heroHeight = document.getElementById('hero').offsetHeight;
+            if (scrollY <= heroHeight) {
+                const offset = scrollY * 0.4;
+                parallaxBg.style.transform = `translate3d(0, ${offset}px, 0)`;
+            }
+            ticking = false;
+        }
 
-<script>
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.animate([{opacity:0,transform:'translateY(60px)'},{opacity:1,transform:'translateY(0)'}],{duration:700,fill:'forwards'})}}),{threshold:.15});
-document.querySelectorAll('section').forEach(s=>io.observe(s));
-const lb=document.getElementById('lb'),im=document.getElementById('lbimg');
-document.querySelectorAll('.photo').forEach(p=>p.onclick=()=>{im.src=p.src;lb.classList.add('active');document.body.style.overflow='hidden';});
-document.querySelector('.close').onclick=()=>{lb.classList.remove('active');document.body.style.overflow='auto';}
-lb.onclick=e=>{if(e.target===lb){lb.classList.remove('active');document.body.style.overflow='auto';}}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('active');});
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Intersection Observer для анимаций появления секций
+        const animatedElements = document.querySelectorAll('[data-animate]');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -40px 0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        animatedElements.forEach(el => observer.observe(el));
+
+        // Лайтбокс
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const masonryItems = document.querySelectorAll('.masonry-item');
+
+        function openLightbox(fullSrc) {
+            lightboxImg.src = fullSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                lightboxImg.src = '';
+            }, 300);
+        }
+
+        masonryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const fullSrc = item.getAttribute('data-full');
+                if (fullSrc) {
+                    openLightbox(fullSrc);
+                }
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+
+        // Инициализация параллакса при загрузке
+        updateParallax();
+    })();
 </script>
-
 </body>
 </html>
