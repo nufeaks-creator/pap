@@ -39,89 +39,6 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             padding-bottom: var(--safe-bottom);
-            /* Изначально скрыт до загрузки */
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-
-        body.loaded {
-            opacity: 1;
-        }
-
-        /* -------- PRELOADER -------- */
-        .preloader {
-            position: fixed;
-            inset: 0;
-            background: var(--bg);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .preloader-text {
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 0.03em;
-            color: var(--muted);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .preloader-dots {
-            display: flex;
-            gap: 0.4rem;
-            margin-bottom: 2rem;
-        }
-
-        .preloader-dots span {
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: dotPulse 1.4s ease-in-out infinite;
-        }
-
-        .preloader-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .preloader-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes dotPulse {
-            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-            40% { transform: scale(1.2); opacity: 1; }
-        }
-
-        .progress-bar {
-            width: 160px;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 1px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: var(--accent);
-            border-radius: 1px;
-            transition: width 0.3s ease;
-        }
-
-        .progress-percent {
-            font-size: 0.75rem;
-            color: var(--muted);
-            margin-top: 0.6rem;
-            font-weight: 300;
-            letter-spacing: 0.05em;
         }
 
         /* -------- HERO -------- */
@@ -495,75 +412,6 @@
             transform: translateY(0);
         }
 
-        /* -------- WISHES SECTION (НОВОЕ) -------- */
-        .wishes-section {
-            padding: 3rem 1.5rem 6rem;
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .wishes-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .wishes-heading {
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: -0.01em;
-            color: #fff;
-            margin-bottom: 2rem;
-        }
-
-        .wishes-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
-
-        .wish-item {
-            font-size: 1.1rem;
-            font-weight: 300;
-            color: #ccc;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .wishes-section.visible .wish-item:nth-child(1) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
-        .wishes-section.visible .wish-item:nth-child(2) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
-        .wishes-section.visible .wish-item:nth-child(3) { transition-delay: 0.6s; opacity: 1; transform: translateY(0); }
-        .wishes-section.visible .wish-item:nth-child(4) { transition-delay: 0.8s; opacity: 1; transform: translateY(0); }
-        .wishes-section.visible .wish-item:nth-child(5) { transition-delay: 1.0s; opacity: 1; transform: translateY(0); }
-
-        .wish-accent {
-            color: var(--accent);
-            font-size: 1.3rem;
-        }
-
-        .wish-signature {
-            margin-top: 2.5rem;
-            font-size: 1rem;
-            font-weight: 300;
-            color: var(--muted);
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.6s ease 1.2s, transform 0.6s ease 1.2s;
-        }
-
-        .wishes-section.visible .wish-signature {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* -------- FULLSCREEN VIEWER -------- */
         .viewer-overlay {
             position: fixed;
@@ -662,25 +510,10 @@
             .final-section {
                 max-width: 600px;
             }
-            .wishes-section {
-                max-width: 600px;
-            }
         }
     </style>
 </head>
 <body>
-
-    <!-- PRELOADER -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-text">Собираем тёплые моменты...</div>
-        <div class="preloader-dots">
-            <span></span><span></span><span></span>
-        </div>
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <div class="progress-percent" id="progressPercent">0%</div>
-    </div>
 
     <!-- HERO -->
     <section class="hero" id="hero">
@@ -697,7 +530,7 @@
     <section class="section" id="section2">
         <div class="section-label">Начало</div>
         <h2 class="section-title">Всё начиналось здесь</h2>
-        <p class="section-text">P.S. Детских фотографий я не нашел, поэтому история начинается отсюда.</p>
+        <p class="section-text">Детских фото я не нашел, поэтому история начинается отсюда.</p>
         <div class="grid-2-horiz">
             <div class="photo-card" data-full="assets/1.%20before%20family/1.jpg">
                 <img src="assets/1.%20before%20family/1.jpg" alt="Фото 1" loading="lazy">
@@ -776,7 +609,7 @@
 
     <div class="spacer"></div>
 
-    <!-- 6. И просто интересные моменты -->
+    <!-- 6. И просто рандомные моменты из галереи -->
     <section class="section" id="section6">
         <div class="section-label">Моменты</div>
         <h2 class="section-title">И просто интересные моменты</h2>
@@ -802,29 +635,6 @@
         <div class="final-cta">❤️</div>
     </section>
 
-    <!-- 8. ПОЖЕЛАНИЯ ИМЕНИННИКУ (НОВОЕ) -->
-    <section class="wishes-section" id="wishes">
-        <h2 class="wishes-heading">Наши пожелания тебе, пап</h2>
-        <div class="wishes-list">
-            <div class="wish-item">
-                <span class="wish-accent">✨</span> Крепкого здоровья и бодрости духа
-            </div>
-            <div class="wish-item">
-                <span class="wish-accent">🌟</span> Больше радостных моментов и улыбок
-            </div>
-            <div class="wish-item">
-                <span class="wish-accent">🚀</span> Новых идей и вдохновения
-            </div>
-            <div class="wish-item">
-                <span class="wish-accent">🏡</span> Тепла и уюта в доме
-            </div>
-            <div class="wish-item">
-                <span class="wish-accent">❤️</span> Чтобы все мечты обязательно сбывались
-            </div>
-        </div>
-        <div class="wish-signature">С любовью, твои сыновья</div>
-    </section>
-
     <!-- FULLSCREEN VIEWER -->
     <div class="viewer-overlay" id="viewerOverlay">
         <div class="viewer-close" id="viewerClose">✕</div>
@@ -833,84 +643,7 @@
 
     <script>
         (function() {
-            // --- PRELOADER LOGIC ---
-            const preloader = document.getElementById('preloader');
-            const progressFill = document.getElementById('progressFill');
-            const progressPercent = document.getElementById('progressPercent');
-            const body = document.body;
-
-            // Собираем все уникальные URL изображений
-            function gatherImageUrls() {
-                const urls = new Set();
-                // Все <img> на странице
-                document.querySelectorAll('img').forEach(img => {
-                    if (img.src && !img.src.startsWith('data:')) {
-                        urls.add(img.src);
-                    }
-                    // также data-full атрибуты (для viewer)
-                    const fullSrc = img.closest('[data-full]')?.getAttribute('data-full');
-                    if (fullSrc) urls.add(fullSrc);
-                });
-                // отдельно data-full элементы, которые могут не быть внутри img (на всякий случай)
-                document.querySelectorAll('[data-full]').forEach(el => {
-                    const full = el.getAttribute('data-full');
-                    if (full) urls.add(full);
-                });
-                // фон hero
-                urls.add('assets/5.%20memories/1000005638.png');
-                return Array.from(urls);
-            }
-
-            const allUrls = gatherImageUrls();
-            const total = allUrls.length;
-            let loaded = 0;
-
-            function updateProgress() {
-                loaded++;
-                const percent = Math.round((loaded / total) * 100);
-                progressFill.style.width = percent + '%';
-                progressPercent.textContent = percent + '%';
-            }
-
-            function preloadImages(urls) {
-                if (urls.length === 0) {
-                    finishPreloading();
-                    return;
-                }
-                urls.forEach(url => {
-                    const img = new Image();
-                    img.onload = () => {
-                        updateProgress();
-                        if (loaded >= total) finishPreloading();
-                    };
-                    img.onerror = () => {
-                        // Даже если ошибка, считаем как загружено, чтобы не зависнуть
-                        updateProgress();
-                        if (loaded >= total) finishPreloading();
-                    };
-                    img.src = url;
-                });
-            }
-
-            function finishPreloading() {
-                // Небольшая задержка, чтобы пользователь увидел 100% и надпись
-                setTimeout(() => {
-                    preloader.classList.add('hidden');
-                    body.classList.add('loaded');
-                }, 600);
-            }
-
-            // Стартуем предзагрузку
-            preloadImages(allUrls);
-
-            // Если по какой-то причине preloader завис, fallback через 8 секунд
-            setTimeout(() => {
-                if (!body.classList.contains('loaded')) {
-                    finishPreloading();
-                }
-            }, 8000);
-
-            // --- PARALLAX HERO ---
+            // Parallax hero
             const heroBg = document.getElementById('heroBg');
             const hero = document.getElementById('hero');
             let ticking = false;
@@ -932,8 +665,8 @@
                 }
             }, { passive: true });
 
-            // --- INTERSECTION OBSERVER ---
-            const sections = document.querySelectorAll('.section, .final-section, .wishes-section');
+            // Intersection Observer for sections
+            const sections = document.querySelectorAll('.section, .final-section');
             const observerOptions = {
                 root: null,
                 rootMargin: '0px 0px -10% 0px',
@@ -951,7 +684,7 @@
 
             sections.forEach(section => observer.observe(section));
 
-            // --- FULLSCREEN VIEWER ---
+            // Fullscreen viewer
             const viewerOverlay = document.getElementById('viewerOverlay');
             const viewerImg = document.getElementById('viewerImg');
             const viewerClose = document.getElementById('viewerClose');
