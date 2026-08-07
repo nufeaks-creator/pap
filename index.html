@@ -269,6 +269,7 @@
             gap: 0.8rem;
         }
 
+        /* Вертикальное фото — без рамок, без ограничения высоты */
         .spotlight-vertical {
             width: 100%;
             border-radius: 1.4rem;
@@ -276,15 +277,13 @@
             cursor: pointer;
             background: #111;
             border: 1px solid var(--glass-border);
-            position: relative;
+            line-height: 0;
         }
 
         .spotlight-vertical img {
             width: 100%;
             height: auto;
             display: block;
-            object-fit: contain;
-            max-height: 70vh;
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
