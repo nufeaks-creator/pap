@@ -417,6 +417,33 @@
             transform: translateY(0);
         }
 
+        /* -------- WISH SECTION -------- */
+        .wish-section {
+            padding: 4rem 1.5rem 6rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .wish-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .wish-text {
+            font-size: clamp(1.4rem, 5vw, 2.8rem);
+            font-weight: 300;
+            line-height: 1.6;
+            color: #f0f0f0;
+            letter-spacing: 0.02em;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 0.5rem;
+        }
+
         /* -------- FULLSCREEN VIEWER -------- */
         .viewer-overlay {
             position: fixed;
@@ -515,6 +542,9 @@
             .final-section {
                 max-width: 600px;
             }
+            .wish-section {
+                padding: 5rem 2rem 7rem;
+            }
         }
     </style>
 </head>
@@ -522,7 +552,6 @@
 
     <!-- HERO -->
     <section class="hero" id="hero">
-        <!-- Фоновое изображение – загружается мгновенно (eager) и предзагружено через preload -->
         <img class="hero-bg-img" src="assets/5.%20memories/1000005638.png" alt="Фон" loading="eager" width="1920" height="1080" id="heroBg">
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -632,6 +661,8 @@
         </div>
     </section>
 
+    <div class="spacer"></div>
+
     <!-- 7. Финальный экран -->
     <section class="final-section" id="final">
         <div class="final-line">Спасибо, пап.</div>
@@ -639,6 +670,16 @@
         <div class="final-line">За всё, что есть.</div>
         <div class="final-line">И за всё, что ещё впереди.</div>
         <div class="final-cta">❤️</div>
+    </section>
+
+    <!-- 8. Огромное пожелание -->
+    <section class="wish-section" id="wish">
+        <div class="wish-text">
+            Папа, с днём рождения! Желаю тебе крепкого здоровья, неиссякаемой энергии, 
+            чтобы каждый день приносил радость и улыбку. Пусть удача всегда идёт рядом, 
+            а все твои мечты сбываются. Ты — наш главный герой, опора и вдохновение. 
+            Спасибо за твою любовь, заботу и мудрость. Мы очень тебя любим и гордимся тобой!
+        </div>
     </section>
 
     <!-- FULLSCREEN VIEWER -->
@@ -671,15 +712,15 @@
                 }
             }, { passive: true });
 
-            // Intersection Observer for sections
-            var sections = document.querySelectorAll('.section, .final-section');
-            var observerOptions = {
+            // Intersection Observer для всех секций (включая .wish-section)
+            const sections = document.querySelectorAll('.section, .final-section, .wish-section');
+            const observerOptions = {
                 root: null,
                 rootMargin: '0px 0px -10% 0px',
                 threshold: 0.1
             };
 
-            var observer = new IntersectionObserver(function(entries) {
+            const observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
