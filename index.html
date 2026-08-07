@@ -1,9 +1,14 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>С Днём рождения, пап</title>
+
+    <!-- Preload критического фонового изображения hero -->
+    <link rel="preload" as="image" href="assets/5.%20memories/1000005638.png" fetchpriority="high">
+
     <style>
         :root {
             --bg: #080808;
@@ -530,13 +535,13 @@
     <section class="section" id="section2">
         <div class="section-label">Начало</div>
         <h2 class="section-title">Всё начиналось здесь</h2>
-        <p class="section-text">Детских фото я не нашел, поэтому история начинается отсюда.</p>
+        <p class="section-text">Детских фотографий найти не удалось, поэтому история начинается отсюда.</p>
         <div class="grid-2-horiz">
             <div class="photo-card" data-full="assets/1.%20before%20family/1.jpg">
-                <img src="assets/1.%20before%20family/1.jpg" alt="Фото 1" loading="lazy">
+                <img src="assets/1.%20before%20family/1.jpg" alt="Фото 1" width="800" height="600" loading="lazy" decoding="async">
             </div>
             <div class="photo-card" data-full="assets/1.%20before%20family/2.jpg">
-                <img src="assets/1.%20before%20family/2.jpg" alt="Фото 2" loading="lazy">
+                <img src="assets/1.%20before%20family/2.jpg" alt="Фото 2" width="800" height="600" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
@@ -550,14 +555,14 @@
         <p class="section-text">День, с которого всё изменилось.</p>
         <div class="grid-wedding">
             <div class="main-photo" data-full="assets/2.%20wedding/1.jpg">
-                <img src="assets/2.%20wedding/1.jpg" alt="Свадьба 1" loading="lazy">
+                <img src="assets/2.%20wedding/1.jpg" alt="Свадьба 1" width="800" height="600" loading="lazy" decoding="async">
             </div>
             <div class="side-by-side">
                 <div class="photo-card" data-full="assets/2.%20wedding/2.jpg">
-                    <img src="assets/2.%20wedding/2.jpg" alt="Свадьба 2" loading="lazy">
+                    <img src="assets/2.%20wedding/2.jpg" alt="Свадьба 2" width="800" height="600" loading="lazy" decoding="async">
                 </div>
                 <div class="photo-card" data-full="assets/2.%20wedding/3.jpg">
-                    <img src="assets/2.%20wedding/3.jpg" alt="Свадьба 3" loading="lazy">
+                    <img src="assets/2.%20wedding/3.jpg" alt="Свадьба 3" width="800" height="600" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -572,14 +577,14 @@
         <p class="section-text">И жизнь стала ещё интереснее.</p>
         <div class="grid-spotlight">
             <div class="spotlight-vertical" data-full="assets/3.%20me/2.jpg">
-                <img src="assets/3.%20me/2.jpg" alt="Я вертикальное" loading="lazy">
+                <img src="assets/3.%20me/2.jpg" alt="Я вертикальное" width="600" height="800" loading="lazy" decoding="async">
             </div>
             <div class="spotlight-horiz-pair">
                 <div class="photo-card" data-full="assets/3.%20me/1.jpg">
-                    <img src="assets/3.%20me/1.jpg" alt="Я 1" loading="lazy">
+                    <img src="assets/3.%20me/1.jpg" alt="Я 1" width="800" height="600" loading="lazy" decoding="async">
                 </div>
                 <div class="photo-card" data-full="assets/3.%20me/3.jpg">
-                    <img src="assets/3.%20me/3.jpg" alt="Я 3" loading="lazy">
+                    <img src="assets/3.%20me/3.jpg" alt="Я 3" width="800" height="600" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -594,14 +599,14 @@
         <p class="section-text">Нас стало ещё больше.</p>
         <div class="grid-spotlight">
             <div class="spotlight-vertical" data-full="assets/4.%20brother/2.jpg">
-                <img src="assets/4.%20brother/2.jpg" alt="Брат вертикальное" loading="lazy">
+                <img src="assets/4.%20brother/2.jpg" alt="Брат вертикальное" width="600" height="800" loading="lazy" decoding="async">
             </div>
             <div class="spotlight-horiz-pair">
                 <div class="photo-card" data-full="assets/4.%20brother/1.jpg">
-                    <img src="assets/4.%20brother/1.jpg" alt="Брат 1" loading="lazy">
+                    <img src="assets/4.%20brother/1.jpg" alt="Брат 1" width="800" height="600" loading="lazy" decoding="async">
                 </div>
                 <div class="photo-card" data-full="assets/4.%20brother/3.jpg">
-                    <img src="assets/4.%20brother/3.jpg" alt="Брат 3" loading="lazy">
+                    <img src="assets/4.%20brother/3.jpg" alt="Брат 3" width="800" height="600" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -609,19 +614,19 @@
 
     <div class="spacer"></div>
 
-    <!-- 6. И просто рандомные моменты из галереи -->
+    <!-- 6. И просто интересные моменты -->
     <section class="section" id="section6">
         <div class="section-label">Моменты</div>
         <h2 class="section-title">И просто интересные моменты</h2>
         <div class="grid-masonry">
             <div class="masonry-item" data-full="assets/5.%20memories/1000005638.png">
-                <img src="assets/5.%20memories/1000005638.png" alt="Момент 1" loading="lazy">
+                <img src="assets/5.%20memories/1.jpg" alt="Момент 1" width="800" height="600" loading="lazy" decoding="async">
             </div>
             <div class="masonry-item" data-full="assets/5.%20memories/2.jpg">
-                <img src="assets/5.%20memories/2.jpg" alt="Момент 2" loading="lazy">
+                <img src="assets/5.%20memories/2.jpg" alt="Момент 2" width="800" height="640" loading="lazy" decoding="async">
             </div>
             <div class="masonry-item" data-full="assets/5.%20memories/3.jpg">
-                <img src="assets/5.%20memories/3.jpg" alt="Момент 3" loading="lazy">
+                <img src="assets/5.%20memories/3.jpg" alt="Момент 3" width="800" height="600" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
@@ -766,3 +771,4 @@
     </script>
 </body>
 </html>
+```
