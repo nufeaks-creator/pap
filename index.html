@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>С Днём рождения, пап</title>
+
+    <!-- Предзагрузка главного изображения (hero) -->
+    <link rel="preload" as="image" href="assets/5.%20memories/1000005638.png">
+
     <style>
         :root {
             --bg: #080808;
@@ -55,10 +59,12 @@
             background: #000;
         }
 
-        .hero-bg {
+        .hero-bg-img {
             position: absolute;
             inset: -20%;
-            background: url('assets/5.%20memories/1000005638.png') center/cover no-repeat;
+            width: 140%;
+            height: 140%;
+            object-fit: cover;
             will-change: transform;
             z-index: 0;
             filter: brightness(0.5) saturate(0.7);
@@ -269,7 +275,6 @@
             gap: 0.8rem;
         }
 
-        /* Вертикальное фото — без рамок, без ограничения высоты */
         .spotlight-vertical {
             width: 100%;
             border-radius: 1.4rem;
@@ -517,7 +522,8 @@
 
     <!-- HERO -->
     <section class="hero" id="hero">
-        <div class="hero-bg" id="heroBg"></div>
+        <!-- Фоновое изображение – загружается мгновенно (eager) и предзагружено через preload -->
+        <img class="hero-bg-img" src="assets/5.%20memories/1000005638.png" alt="Фон" loading="eager" width="1920" height="1080" id="heroBg">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>С Днём рождения, пап</h1>
@@ -533,10 +539,10 @@
         <p class="section-text">Детских фотографий найти не удалось, поэтому история начинается отсюда.</p>
         <div class="grid-2-horiz">
             <div class="photo-card" data-full="assets/1.%20before%20family/1.jpg">
-                <img src="assets/1.%20before%20family/1.jpg" alt="Фото 1" loading="lazy">
+                <img src="assets/1.%20before%20family/1.jpg" alt="Фото 1" loading="lazy" width="400" height="300">
             </div>
             <div class="photo-card" data-full="assets/1.%20before%20family/2.jpg">
-                <img src="assets/1.%20before%20family/2.jpg" alt="Фото 2" loading="lazy">
+                <img src="assets/1.%20before%20family/2.jpg" alt="Фото 2" loading="lazy" width="400" height="300">
             </div>
         </div>
     </section>
@@ -550,14 +556,14 @@
         <p class="section-text">День, с которого всё изменилось.</p>
         <div class="grid-wedding">
             <div class="main-photo" data-full="assets/2.%20wedding/1.jpg">
-                <img src="assets/2.%20wedding/1.jpg" alt="Свадьба 1" loading="lazy">
+                <img src="assets/2.%20wedding/1.jpg" alt="Свадьба 1" loading="lazy" width="400" height="300">
             </div>
             <div class="side-by-side">
                 <div class="photo-card" data-full="assets/2.%20wedding/2.jpg">
-                    <img src="assets/2.%20wedding/2.jpg" alt="Свадьба 2" loading="lazy">
+                    <img src="assets/2.%20wedding/2.jpg" alt="Свадьба 2" loading="lazy" width="400" height="300">
                 </div>
                 <div class="photo-card" data-full="assets/2.%20wedding/3.jpg">
-                    <img src="assets/2.%20wedding/3.jpg" alt="Свадьба 3" loading="lazy">
+                    <img src="assets/2.%20wedding/3.jpg" alt="Свадьба 3" loading="lazy" width="400" height="300">
                 </div>
             </div>
         </div>
@@ -572,14 +578,14 @@
         <p class="section-text">И жизнь стала ещё интереснее.</p>
         <div class="grid-spotlight">
             <div class="spotlight-vertical" data-full="assets/3.%20me/2.jpg">
-                <img src="assets/3.%20me/2.jpg" alt="Я вертикальное" loading="lazy">
+                <img src="assets/3.%20me/2.jpg" alt="Я вертикальное" loading="lazy" width="300" height="400">
             </div>
             <div class="spotlight-horiz-pair">
                 <div class="photo-card" data-full="assets/3.%20me/1.jpg">
-                    <img src="assets/3.%20me/1.jpg" alt="Я 1" loading="lazy">
+                    <img src="assets/3.%20me/1.jpg" alt="Я 1" loading="lazy" width="400" height="300">
                 </div>
                 <div class="photo-card" data-full="assets/3.%20me/3.jpg">
-                    <img src="assets/3.%20me/3.jpg" alt="Я 3" loading="lazy">
+                    <img src="assets/3.%20me/3.jpg" alt="Я 3" loading="lazy" width="400" height="300">
                 </div>
             </div>
         </div>
@@ -594,14 +600,14 @@
         <p class="section-text">Нас стало ещё больше.</p>
         <div class="grid-spotlight">
             <div class="spotlight-vertical" data-full="assets/4.%20brother/2.jpg">
-                <img src="assets/4.%20brother/2.jpg" alt="Брат вертикальное" loading="lazy">
+                <img src="assets/4.%20brother/2.jpg" alt="Брат вертикальное" loading="lazy" width="300" height="400">
             </div>
             <div class="spotlight-horiz-pair">
                 <div class="photo-card" data-full="assets/4.%20brother/1.jpg">
-                    <img src="assets/4.%20brother/1.jpg" alt="Брат 1" loading="lazy">
+                    <img src="assets/4.%20brother/1.jpg" alt="Брат 1" loading="lazy" width="400" height="300">
                 </div>
                 <div class="photo-card" data-full="assets/4.%20brother/3.jpg">
-                    <img src="assets/4.%20brother/3.jpg" alt="Брат 3" loading="lazy">
+                    <img src="assets/4.%20brother/3.jpg" alt="Брат 3" loading="lazy" width="400" height="300">
                 </div>
             </div>
         </div>
@@ -615,13 +621,13 @@
         <h2 class="section-title">И просто интересные моменты</h2>
         <div class="grid-masonry">
             <div class="masonry-item" data-full="assets/5.%20memories/1000005638.png">
-                <img src="assets/5.%20memories/1000005638.png" alt="Момент 1" loading="lazy">
+                <img src="assets/5.%20memories/1000005638.png" alt="Момент 1" loading="lazy" width="400" height="300">
             </div>
             <div class="masonry-item" data-full="assets/5.%20memories/2.jpg">
-                <img src="assets/5.%20memories/2.jpg" alt="Момент 2" loading="lazy">
+                <img src="assets/5.%20memories/2.jpg" alt="Момент 2" loading="lazy" width="500" height="400">
             </div>
             <div class="masonry-item" data-full="assets/5.%20memories/3.jpg">
-                <img src="assets/5.%20memories/3.jpg" alt="Момент 3" loading="lazy">
+                <img src="assets/5.%20memories/3.jpg" alt="Момент 3" loading="lazy" width="400" height="300">
             </div>
         </div>
     </section>
@@ -653,12 +659,12 @@
                 const heroHeight = hero.offsetHeight;
                 if (scrollY <= heroHeight) {
                     const offset = scrollY * 0.4;
-                    heroBg.style.transform = `translateY(${offset}px)`;
+                    heroBg.style.transform = 'translateY(' + offset + 'px)';
                 }
                 ticking = false;
             }
 
-            window.addEventListener('scroll', () => {
+            window.addEventListener('scroll', function() {
                 if (!ticking) {
                     window.requestAnimationFrame(updateParallax);
                     ticking = true;
@@ -666,15 +672,15 @@
             }, { passive: true });
 
             // Intersection Observer for sections
-            const sections = document.querySelectorAll('.section, .final-section');
-            const observerOptions = {
+            var sections = document.querySelectorAll('.section, .final-section');
+            var observerOptions = {
                 root: null,
                 rootMargin: '0px 0px -10% 0px',
                 threshold: 0.1
             };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         observer.unobserve(entry.target);
@@ -682,15 +688,17 @@
                 });
             }, observerOptions);
 
-            sections.forEach(section => observer.observe(section));
+            sections.forEach(function(section) {
+                observer.observe(section);
+            });
 
             // Fullscreen viewer
-            const viewerOverlay = document.getElementById('viewerOverlay');
-            const viewerImg = document.getElementById('viewerImg');
-            const viewerClose = document.getElementById('viewerClose');
-            let startY = 0;
-            let currentY = 0;
-            let isDragging = false;
+            var viewerOverlay = document.getElementById('viewerOverlay');
+            var viewerImg = document.getElementById('viewerImg');
+            var viewerClose = document.getElementById('viewerClose');
+            var startY = 0;
+            var currentY = 0;
+            var isDragging = false;
 
             function openViewer(src) {
                 viewerImg.src = src;
@@ -708,9 +716,9 @@
                 viewerImg.style.transform = 'scale(0.92) translateY(0)';
             }
 
-            document.querySelectorAll('[data-full]').forEach(el => {
-                el.addEventListener('click', (e) => {
-                    const src = el.getAttribute('data-full');
+            document.querySelectorAll('[data-full]').forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    var src = el.getAttribute('data-full');
                     if (src) openViewer(src);
                 });
             });
@@ -723,7 +731,7 @@
             });
 
             // Touch swipe down to close
-            viewerImg.addEventListener('touchstart', (e) => {
+            viewerImg.addEventListener('touchstart', function(e) {
                 if (e.touches.length === 1) {
                     startY = e.touches[0].clientY;
                     isDragging = true;
@@ -731,21 +739,21 @@
                 }
             }, { passive: false });
 
-            viewerImg.addEventListener('touchmove', (e) => {
+            viewerImg.addEventListener('touchmove', function(e) {
                 if (!isDragging) return;
                 currentY = e.touches[0].clientY;
-                const diff = currentY - startY;
+                var diff = currentY - startY;
                 if (diff > 0) {
                     e.preventDefault();
-                    viewerImg.style.transform = `scale(${1 - diff * 0.001}) translateY(${diff}px)`;
+                    viewerImg.style.transform = 'scale(' + (1 - diff * 0.001) + ') translateY(' + diff + 'px)';
                 }
             }, { passive: false });
 
-            viewerImg.addEventListener('touchend', () => {
+            viewerImg.addEventListener('touchend', function() {
                 if (!isDragging) return;
                 isDragging = false;
                 viewerImg.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
-                const diff = currentY - startY;
+                var diff = currentY - startY;
                 if (diff > 80) {
                     closeViewer();
                 } else {
@@ -756,7 +764,7 @@
             });
 
             // Keyboard close
-            document.addEventListener('keydown', (e) => {
+            document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && viewerOverlay.classList.contains('active')) {
                     closeViewer();
                 }
